@@ -1,0 +1,14 @@
+{% extends "microblog/base.html" %}
+
+
+{% block title %}
+    {% if title %}
+        <title>About-{{ title }}</title>
+    {% else %}
+        <title>CB-ABout</title>
+    {% endif %}
+{% endblock title %}
+
+{% block post %}
+    <h1>About iSriBalaji</h1>
+{% endblock post %}

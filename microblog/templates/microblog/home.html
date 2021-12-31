@@ -1,0 +1,31 @@
+{% extends "microblog/base.html" %}
+
+
+{% block title %}
+    {% if title %}
+        <title>Callodine Blog!-{{ title }}</title>
+    {% else %}
+        <title>Callodine Blog</title>
+    {% endif %}
+{% endblock title %}
+
+{% block post %}
+<div class="article-metadata p-1 mb-4">
+    <h2 class="pb-0 mb-0">Welcome to Callodine Blog</h2>
+    <small class="text-muted">This is for the personal use of 48 & 65 Callodine :)</small>
+</div>
+    {% for each_post in post%}
+    <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{each_post.author }}</a>
+            <small class="text-muted">{{ each_post.date_posted | date:"M d, Y" }}</small>
+            <br>
+            <small class="text-muted">@{{each_post.username }}</small>
+          </div>
+          <h5><a class="article-title" href="#">{{ each_post.title }}</a></h5>
+          <p class="article-content">{{ each_post.content }}</p>
+        </div>
+      </article>
+    {% endfor %}
+{% endblock post %}

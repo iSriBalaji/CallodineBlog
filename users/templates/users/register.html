@@ -1,0 +1,28 @@
+{% extends "microblog/base.html" %}
+
+
+{% block title %}
+    <title>Register</title>
+{% endblock title %}
+
+{% block post %}
+<div class="mt-5 pt-2">
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <legend class="border-bottom mb-4"><strong>Create your account</strong></legend>
+      {{form.as_p}}
+      <small id="emailHelp" class="form-text text-muted">We're delighted to have you here!</small>
+    </div>
+    <div>
+    <button type="submit" class="btn btn-primary btn-outline-primary">Sign Up</button>
+    </div>
+  </form>
+  <div class="border-top pt-2 mt-3">
+    <small class="text-muted">
+        Already have an account?
+        <a href="#">Sign in</a>
+    </small>
+  </div>
+</div>
+{% endblock post %}
