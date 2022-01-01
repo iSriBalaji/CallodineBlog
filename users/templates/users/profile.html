@@ -1,0 +1,24 @@
+{% extends "microblog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>User Profile</title>
+{% endblock title %}
+
+{% block post %}
+<div class="mt-5 pt-2">
+    <div class="border-top pt-2 mt-3 mb-5 pb-2">
+        <small class="text-muted">
+            Log in to your account again: 
+            <a href="{% url 'login' %}">Sign in</a>
+        </small>
+        <h4>{{ user.first_name }}</h4>
+    </div>
+    <!-- <div class="border-top pt-2 mt-3 mb-5 pb-2">
+        <small class="text-muted">
+            Log in to your account again: 
+            <a href="{% url 'login' %}">Sign in</a>
+        </small>
+    </div> -->
+</div>
+{% endblock post %}

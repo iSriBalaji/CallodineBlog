@@ -1,0 +1,28 @@
+{% extends "microblog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+
+{% block post %}
+<div class="mt-5 pt-2">
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <legend class="border-bottom mb-4"><h2>Log in to your Callodine account</h2></legend>
+      {{form | crispy }}
+      <small id="emailHelp" class="form-text text-muted">Baju is delighted to have you here again!</small>
+    </div>
+    <div>
+    <button type="submit" class="btn btn-primary btn-outline-primary">Sign in</button>
+    </div>
+  </form>
+  <div class="border-top pt-2 mt-3 mb-5 pb-2">
+    <small class="text-muted">
+        Don't have an account?
+        <a href="{% url 'register' %}">Join our Callodine family now!</a>
+    </small>
+  </div>
+</div>
+{% endblock post %}

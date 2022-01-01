@@ -48,8 +48,14 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
           <span>&nbsp;&nbsp;&nbsp;</span>
-          <a class="nav-item nav-link active" href="#">Login</a>
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'profile' %}">{{ user.first_name }} ⚡</a>
+          <a class="nav-item nav-link active" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a class="nav-item nav-link active" href="{% url 'login' %}">Login</a>
           <a class="nav-item nav-link active" href="{% url 'register' %}">Register</a>
+          {% endif %}
+        
         </div>
       </nav>
     </header>
