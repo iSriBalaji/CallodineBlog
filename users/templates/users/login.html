@@ -5,24 +5,56 @@
     <title>Login</title>
 {% endblock title %}
 
-{% block post %}
-<div class="mt-5 pt-2">
+{% block authentication %}
+<div class="mt-4 pt-3 mb-1 content-section">
 <form method="POST">
     {% csrf_token %}
     <div class="form-group">
       <legend class="border-bottom mb-4"><h2>Log in to your Callodine account</h2></legend>
       {{form | crispy }}
-      <small id="emailHelp" class="form-text text-muted">Baju is delighted to have you here again!</small>
+      <small id="emailHelp" class="form-text text-muted">Baju is delighted to have you here again! ⚡</small>
     </div>
     <div>
     <button type="submit" class="btn btn-primary btn-outline-primary">Sign in</button>
     </div>
   </form>
-  <div class="border-top pt-2 mt-3 mb-5 pb-2">
+  <div class="border-top pt-2 mt-3 mb-3 pb-2">
     <small class="text-muted">
         Don't have an account?
         <a href="{% url 'register' %}">Join our Callodine family now!</a>
     </small>
   </div>
 </div>
-{% endblock post %}
+<div class="mt-4 pt-3 content-section">
+<h4>“And, when you want something, all the universe conspires in helping you to achieve it.”</h4>
+<!-- <h4>“So, I love you because the entire universe conspired to help me find you.”</h4> -->
+<p>― Paulo Coelho, The Alchemist</p>
+<div class="border-top pt-2 mt-3 mb-1 pb-1">
+    <small class="text-muted">
+        The most amazing lines are posted here for a month! Post your lines, to get a chance to appear in the login page.
+        <a href="{% url 'register' %}">Join now!</a>
+    </small>
+  </div>
+</div>
+{% endblock authentication %}
+{% block sidebar %}
+<div class="content-section mt-0 pt-3">
+    <h3>What's Happening</h3>
+    <a href="#" class = "bday" data-toggle="tooltip"
+data-original-title="You're Spectacular!!⚡">Note for you</a>
+    <p class='text-muted'>Know about the things that are happening in Callodine
+      <ul class="list-group">
+        <a href="{% url 'miniblog' %}" class="list-group-item list-group-item-action active">Latest Posts</a>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/abhishek_pughazh/" target="_blank" rel="noopener noreferrer">Abhi</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ ABHI_BDAY | date:'d M, Y' }} ♾️">{{ ABHI_NOD }} days left</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/aishhwarya.radhakrishnan/" target="_blank" rel="noopener noreferrer">Aishu</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ AISHU_BDAY | date:'d M, Y' }} ♾️">{{ AISHU_NOD }} days left</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/akshayah_kc/" target="_blank" rel="noopener noreferrer">Akshaya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ AKSHU_BDAY | date:'d M, Y' }} ♾️">{{ AKSHU_NOD }} days left</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/aravind_balakrishnan/" target="_blank" rel="noopener noreferrer">Aravind</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ ARAVIND_BDAY | date:'d M, Y' }} ♾️">{{ ARAVIND_NOD }} days left</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/isribalaji/" target="_blank" rel="noopener noreferrer">Baju</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ BAJU_BDAY | date:'d M, Y' }} ♾️">{{ BAJU_NOD }} days left</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/oviyaa_balamurugan/" target="_blank" rel="noopener noreferrer">Oviya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ OVIYA_BDAY | date:'d M, Y' }} ♾️">{{ OVIYA_NOD }} days left</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/piya_papaya/" target="_blank" rel="noopener noreferrer">Priya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ PRIYA_BDAY | date:'d M, Y' }} ♾️">{{ PRIYA_NOD }} days left</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/viswapujitha_suresh/" target="_blank" rel="noopener noreferrer">Viswa</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ VISWA_BDAY | date:'d M, Y' }} ♾️">{{ VISWA_NOD }} days left</span></li>
+      </ul>
+    </p>
+    <small class="text-muted">Hover the badge to know the DOB.</small>
+  </div>
+{% endblock sidebar %}

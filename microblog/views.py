@@ -1,6 +1,8 @@
+from django.db import models
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 from .models import Post
 
 # Create your views here.
@@ -33,6 +35,9 @@ from .models import Post
 #     }
 # ]
 
+## We are going to create class based views which will handle many things on their own at the backend. Previously, we have used function based views.
+
+
 posts = Post.objects.all()
 
 @login_required
@@ -44,6 +49,8 @@ def home(request):
 
     return render(request, 'microblog/home.html', context)
 
+class PostView(ListView):
+    models = Post
 
 def about(request):
     context = {

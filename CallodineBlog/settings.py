@@ -11,6 +11,31 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from datetime import datetime
+
+def calculate_dates(original_date, now):
+    delta1 = datetime(now.year, original_date.month, original_date.day)
+    delta2 = datetime(now.year+1, original_date.month, original_date.day)
+    
+    return ((delta1 if delta1 > now else delta2) - now).days + 1
+
+ABHI_BDAY = datetime.strptime('May 14 1999', '%b %d %Y')
+ABHI_NOD =  calculate_dates(ABHI_BDAY, datetime.now())
+AISHU_BDAY = datetime.strptime('Nov 12 1996', '%b %d %Y')
+AISHU_NOD =  calculate_dates(AISHU_BDAY, datetime.now())
+AKSHU_BDAY = datetime.strptime('Jan 09 1996', '%b %d %Y')
+AKSHU_NOD =  calculate_dates(AKSHU_BDAY, datetime.now())
+ARAVIND_BDAY = datetime.strptime('Oct 22 1998', '%b %d %Y')
+ARAVIND_NOD =  calculate_dates(ARAVIND_BDAY, datetime.now())
+OVIYA_BDAY = datetime.strptime('Feb 03 1998', '%b %d %Y')
+OVIYA_NOD =  calculate_dates(OVIYA_BDAY, datetime.now())
+PRIYA_BDAY = datetime.strptime('Mar 14 1996', '%b %d %Y')
+PRIYA_NOD =  calculate_dates(PRIYA_BDAY, datetime.now())
+BAJU_BDAY = datetime.strptime('May 27 1999', '%b %d %Y')
+BAJU_NOD =  calculate_dates(BAJU_BDAY, datetime.now())
+VISWA_BDAY = datetime.strptime('Oct 23 1998', '%b %d %Y')
+VISWA_NOD =  calculate_dates(VISWA_BDAY, datetime.now())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -63,6 +88,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'users.context_processors.frds_bday',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -133,4 +159,11 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_REDIRECT_URL = 'miniblog'
 
 LOGIN_URL = 'login'
+
+## We have created a MEDIA setting. SO whenever we upload any image now, it'll create the profile_pic directory here in the
+## media directory. So our project folder won't get cluttered
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
