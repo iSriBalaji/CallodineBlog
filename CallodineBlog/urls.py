@@ -20,6 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
+handler404 = 'microblog.views.error_404'
+handler403 = 'microblog.views.error_404'
+handler500 = 'microblog.views.error_500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('microblog.urls'), name='home'),
