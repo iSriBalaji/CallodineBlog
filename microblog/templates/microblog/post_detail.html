@@ -14,7 +14,7 @@
       <img src="{{object.username.profile.propic.url}}" alt="" class="rounded-circle img-thumbnail article-img">
         <div class="media-body">
           <div class="article-metadata">
-            <h4><a class="mr-2" href="#">{{object.author }}</a></h4>
+            <h4><a class="mr-2" href="{% url 'individual_user' object.username %}">{{object.author }}</a></h4>
             <h6 class="text-muted">@{{object.username }}</h6>
           </div>
           <h6 class="text-muted">{{ object.date_posted | date:"h:i A" }} • {{ object.date_posted | date:"M d, Y" }}</h6>

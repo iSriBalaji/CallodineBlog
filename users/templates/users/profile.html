@@ -21,6 +21,9 @@
         <h4 class="account-heading">{{ user.first_name }} {{ user.last_name }}</h4>
         <h5 class="text-secondary">{{ user.username }}</h5>
         <small class="text-secondary">{{ user.email }}</small>
+        <br>
+        <a href="{% url 'individual_user' user.username %}" class = "bday btn btn-outline-success mt-4 mb-2 btn-lg" data-toggle="tooltip"
+data-original-title="If you feel it. Express it.">Your Posts</a>
       </div>
     </div>
     <!-- FORM HERE -->
@@ -49,6 +52,8 @@
 {% block sidebar %}
 <div class="content-section mt-4">
   <h4>My Twitter - @isribalaji</h4>
+  <a href="{% url 'individual_user' user.username %}" class = "bday btn btn-outline-info" data-toggle="tooltip"
+data-original-title="If you feel it. Express it.">Your Posts</a>
 </div>
 <div class="content-section mt-4">
     <div class="embed-responsive embed-responsive-16by9">

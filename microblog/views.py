@@ -1,11 +1,12 @@
 from django.db import models
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -51,11 +52,24 @@ def home(request):
 
     return render(request, 'microblog/home.html', context)
 
+## paginate_by = <no_of_post> is enough to paginate the web page. As we are using class based views it reduces a lot of code.
+
 class PostView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'microblog/home.html'
     context_object_name = 'post'
     ordering = ['-date_posted']
+    paginate_by = 5
+
+class UserPost(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'microblog/userpost.html'
+    context_object_name = 'post'
+    paginate_by = 5
+
+    def get_queryset(self):
+        current_user = get_object_or_404(User, username = self.kwargs.get('username'))
+        return Post.objects.filter(username = current_user).order_by('-date_posted')
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post

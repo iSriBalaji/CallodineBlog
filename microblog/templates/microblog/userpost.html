@@ -2,17 +2,17 @@
 
 
 {% block title %}
-    {% if title %}
-        <title>Callodine Blog!-{{ title }}</title>
-    {% else %}
-        <title>Callodine Blog</title>
-    {% endif %}
+        <title>{{ view.kwargs.first_name}} @{{ view.kwargs.username}}</title>
 {% endblock title %}
 
 {% block post %}
 <div class="article-metadata p-1 mb-4">
-    <h2 class="pb-0 mb-0">Welcome to Callodine Blog</h2>
-    <small class="text-muted">This is for the personal use of 48 & 65 Callodine :)</small>
+    <h2 class="pb-0 mb-0">{{ view.kwargs.first_name}}</h2>
+    <h5>
+        {{ view.kwargs.username}}
+    </h5>
+    <h6>No of Posts: {{ page_obj.paginator.count }} </h6>
+    <small class="text-muted">List of of post by {{ view.kwargs.first_name}}</small>
 </div>
     {% for each_post in post%}
     <a href="{% url 'individual_post' each_post.id %}" style="display: block;">
