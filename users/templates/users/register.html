@@ -29,31 +29,35 @@
 {% endblock authentication %}
 
 {% block sidebar %}
-<div class="content-section mt-4">
-    <h4>Happy New Year! Wishing everyone good health and happiness in 2022!</h4>
-    <p class='text-muted'> Let’s have more smiles, give more love, more forgiveness and travel new paths!
-    </p>
+  <div class="card border-info mt-1 mb-4" style="width: 100%;">
+    <div class="card-body">
+      <h5 class="card-title">Happy New Year! Wishing everyone good health and happiness in 2022!</h5>
+      <p class="card-text">Let’s have more smiles, give more love, more forgiveness and travel new paths!</p>
+    </div>
   </div>
+  
   <!-- <div class="content-section">
     <h4>Harry Potter 20th Anniversary: Return to Hogwarts</h4>
     <p class='text-muted'> Cast members from all "Harry Potter" films reunite in a retrospective special to celebrate the anniversary of the first film.
     </p>
   </div> -->
-<div class="content-section">
+  <div class="content-section mt-0 pt-3">
     <h3>What's Happening</h3>
-    <a class = "bday" data-toggle="tooltip"
+    <hr>
+    <a href="#" class = "bday" data-toggle="tooltip"
 data-original-title="You're Spectacular!!⚡">Note for you</a>
     <p class='text-muted'>Know about the things that are happening in Callodine
-      <ul class="list-group">
-        <a href="{% url 'miniblog' %}" class="list-group-item list-group-item-action active">Latest Posts</a>
-        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/abhishek_pughazh/" target="_blank" rel="noopener noreferrer">Abhi</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ ABHI_BDAY | date:'d M, Y' }} ♾️">{{ ABHI_NOD }} days left</span></li>
-        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/aishhwarya.radhakrishnan/" target="_blank" rel="noopener noreferrer">Aishu</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ AISHU_BDAY | date:'d M, Y' }} ♾️">{{ AISHU_NOD }} days left</span></li>
-        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/akshayah_kc/" target="_blank" rel="noopener noreferrer">Akshaya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ AKSHU_BDAY | date:'d M, Y' }} ♾️">{{ AKSHU_NOD }} days left</span></li>
-        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/aravind_balakrishnan/" target="_blank" rel="noopener noreferrer">Aravind</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ ARAVIND_BDAY | date:'d M, Y' }} ♾️">{{ ARAVIND_NOD }} days left</span></li>
-        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/isribalaji/" target="_blank" rel="noopener noreferrer">Baju</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ BAJU_BDAY | date:'d M, Y' }} ♾️">{{ BAJU_NOD }} days left</span></li>
-        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/oviyaa_balamurugan/" target="_blank" rel="noopener noreferrer">Oviya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ OVIYA_BDAY | date:'d M, Y' }} ♾️">{{ OVIYA_NOD }} days left</span></li>
-        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/piya_papaya/" target="_blank" rel="noopener noreferrer">Priya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ PRIYA_BDAY | date:'d M, Y' }} ♾️">{{ PRIYA_NOD }} days left</span></li>
-        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/viswapujitha_suresh/" target="_blank" rel="noopener noreferrer">Viswa</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ VISWA_BDAY | date:'d M, Y' }} ♾️">{{ VISWA_NOD }} days left</span></li>
+      <ul class="list-group ">
+        <!-- <a href="{% url 'miniblog' %}" class="list-group-item list-group-item-action active">Latest Posts</a> -->
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="{% url 'miniblog' %}" class="h6">Latest Posts</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="Age is an issue of mind over matter ⭐">Days until your birthday</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/abhishek_pughazh/" target="_blank" rel="noopener noreferrer">Abhi</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ ABHI_BDAY | date:'d M, Y' }} ♾️">{{ ABHI_NOD }} days</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/aishhwarya.radhakrishnan/" target="_blank" rel="noopener noreferrer">Aishu</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ AISHU_BDAY | date:'d M, Y' }} ♾️">{{ AISHU_NOD }} days</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/akshayah_kc/" target="_blank" rel="noopener noreferrer">Akshaya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ AKSHU_BDAY | date:'d M, Y' }} ♾️">{{ AKSHU_NOD }} days</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/aravind_balakrishnan/" target="_blank" rel="noopener noreferrer">Aravind</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ ARAVIND_BDAY | date:'d M, Y' }} ♾️">{{ ARAVIND_NOD }} days</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/isribalaji/" target="_blank" rel="noopener noreferrer">Baju</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ BAJU_BDAY | date:'d M, Y' }} ♾️">{{ BAJU_NOD }} days</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/oviyaa_balamurugan/" target="_blank" rel="noopener noreferrer">Oviya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ OVIYA_BDAY | date:'d M, Y' }} ♾️">{{ OVIYA_NOD }} days</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/piya_papaya/" target="_blank" rel="noopener noreferrer">Priya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ PRIYA_BDAY | date:'d M, Y' }} ♾️">{{ PRIYA_NOD }} days</span></li>
+        <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/viswapujitha_suresh/" target="_blank" rel="noopener noreferrer">Viswa</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ VISWA_BDAY | date:'d M, Y' }} ♾️">{{ VISWA_NOD }} days</span></li>
       </ul>
     </p>
     <small class="text-muted">Hover the badge to know the DOB.</small>

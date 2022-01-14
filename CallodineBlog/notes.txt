@@ -6,6 +6,16 @@ pass: baymax123
 testuser
 python123
 
+postgres
+baymax123
+
+callodine123
+
+Heroku Superuser
+callodine
+baymax123
+srisvit@gmail.com
+
 ## Check the version of Django
 python -m django --version
 

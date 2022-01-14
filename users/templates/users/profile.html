@@ -14,7 +14,7 @@
         </small>
     </div> -->
 </div>
-<div class="content-section">
+<!-- <div class="content-section">
     <div class="media">
       <img class="rounded-circle account-img" src="{{ user.profile.propic.url }}">
       <div class="media-body">
@@ -26,9 +26,23 @@
 data-original-title="If you feel it. Express it.">Your Posts</a>
       </div>
     </div>
-    <!-- FORM HERE -->
-  </div>
-  <div class="content-section">
+  </div> -->
+
+  <div class="card border-info p-2 mt-2 mb-3" style="width: 100%;">
+    <article class="media p-1 m-1">
+        <img src="{{ user.profile.propic.url }}" alt="" class="rounded-circle img-thumbnail article-img">
+          <div class="media-body">
+            <div class="article-metadata">  
+              <h2 class="card-title mb-3" style="display:inline;color: teal;">{{ user.first_name }} {{ user.last_name }}</h2>
+              <h6 class="card-subtitle text-muted mt-2 mb-2">@{{ user.username }}</h6>
+            </div>
+            <h6 class="card-title article-title mt-2 mb-0" style="color: teal;">{{ user.email }}</h6>
+            <a href="{% url 'happydays' %}" style="float: right;" class = "btn btn-danger mt-1 mb-2 mr-2 btn-lg">Gallery</a>
+            <a href="{% url 'individual_user' user.username %}" style="float: right;" class = "btn btn-dark mt-1 mb-2 mr-2 btn-lg">Your Posts</a>
+          </div>
+        </article>
+      </div>
+  <div class="border-info content-section pb-5">
     <form method="POST" enctype='multipart/form-data'>
       {% csrf_token %}
       <div class="form-group">
@@ -38,28 +52,69 @@ data-original-title="If you feel it. Express it.">Your Posts</a>
         <small id="emailHelp" class="form-text text-muted">Please upload an image with an aspect ratio of 1:1</small>
         <small id="emailHelp" class="form-text text-muted">You can change your username anytime!</small>
       </div>
-      <div>
-      <button type="submit" class="btn btn-primary btn-outline-primary">Update</button>
+      <div class="m-2 p-3">
+      <button type="submit" class="btn btn-primary btn-outline-info" style="float: right;">Update</button>
       </div>
     </form>
   </div>
-  <div class="content-section mt-4">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe width="100%" height="300" src="https://cdn.htmlgames.com/MahjongGardens2/" frameborder="0" allowfullscreen ng-show="showvideo"></iframe>
-    </div>
-  </div>
 {% endblock authentication %}
 {% block sidebar %}
-<div class="content-section mt-4">
-  <h4>My Twitter - @isribalaji</h4>
-  <a href="{% url 'individual_user' user.username %}" class = "bday btn btn-outline-info" data-toggle="tooltip"
-data-original-title="If you feel it. Express it.">Your Posts</a>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Post your thoughts now!</h5>
+    <p class="card-text">Share your thoughts here everyday to store your memories here</p>
+    <a href="{% url 'new_post' %}" class = "bday btn btn-primary" data-toggle="tooltip"
+    data-original-title="If you feel it. Express it.">New Post</a>
+  </div>
 </div>
-<div class="content-section mt-4">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe width="100%" height="300" src="https://cdn.htmlgames.com/MahjongGardens2/" frameborder="0" allowfullscreen ng-show="showvideo"></iframe>
+
+<div class="mt-4 pt-3 card text-dark bg-light content-section">
+<blockquote class="blockquote text-center">
+  <p class="mb-0">“Between what is said and not meant, And what is meant and not said, Most love is lost”</p>
+  <footer class="blockquote-footer">Kahlil Gibran, <cite title="Source Title">American writer, poet and visual artist</cite></footer>
+</blockquote>
+</div>
+
+<div id="carouselExampleControls" class="carousel slide mt-3 mb-3" data-ride="carousel">
+  <div class="carousel-inner" style="border: 1px; border-radius: 7px;">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="https://pbs.twimg.com/media/FC5VWAGWQAAHKTt?format=jpg&name=large" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://callodine-blog-files.s3.us-east-2.amazonaws.com/slide1.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://callodine-blog-files.s3.us-east-2.amazonaws.com/slide2.jpg" alt="Third slide">
     </div>
   </div>
-    
-  
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<div class="card border-info content-section mt-0 pt-3">
+  <h3>What's Happening</h3>
+  <a class = "bday" data-toggle="tooltip"
+data-original-title="You're Spectacular!!⚡" style="color: teal;"><strong><u> Note for you </u></strong></a>
+  <p class='text-muted'>Know about the things that are happening in Callodine
+    <ul class="list-group">
+      <!-- <a href="{% url 'miniblog' %}" class="list-group-item list-group-item-action active">Latest Posts</a> -->
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="{% url 'miniblog' %}" class="h6">Latest Posts</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="Age is an issue of mind over matter ⭐">Days until your birthday</span></li>
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/abhishek_pughazh/" target="_blank" rel="noopener noreferrer">Abhi</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ ABHI_BDAY | date:'d M, Y' }} ♾️">{{ ABHI_NOD }} days</span></li>
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/aishhwarya.radhakrishnan/" target="_blank" rel="noopener noreferrer">Aishu</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ AISHU_BDAY | date:'d M, Y' }} ♾️">{{ AISHU_NOD }} days</span></li>
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/akshayah_kc/" target="_blank" rel="noopener noreferrer">Akshaya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ AKSHU_BDAY | date:'d M, Y' }} ♾️">{{ AKSHU_NOD }} days</span></li>
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/aravind_balakrishnan/" target="_blank" rel="noopener noreferrer">Aravind</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ ARAVIND_BDAY | date:'d M, Y' }} ♾️">{{ ARAVIND_NOD }} days</span></li>
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/isribalaji/" target="_blank" rel="noopener noreferrer">Baju</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ BAJU_BDAY | date:'d M, Y' }} ♾️">{{ BAJU_NOD }} days</span></li>
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/oviyaa_balamurugan/" target="_blank" rel="noopener noreferrer">Oviya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ OVIYA_BDAY | date:'d M, Y' }} ♾️">{{ OVIYA_NOD }} days</span></li>
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/piya_papaya/" target="_blank" rel="noopener noreferrer">Priya</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ PRIYA_BDAY | date:'d M, Y' }} ♾️">{{ PRIYA_NOD }} days</span></li>
+      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"><a href="https://www.instagram.com/viswapujitha_suresh/" target="_blank" rel="noopener noreferrer">Viswa</a><span class="badge badge-primary badge-pill bday" data-toggle="tooltip" data-placement="top" data-original-title="{{ VISWA_BDAY | date:'d M, Y' }} ♾️">{{ VISWA_NOD }} days</span></li>
+    </ul>
+  </p>
+  <small class="text-muted">Hover the badge to know the DOB.</small>
+</div>
 {% endblock sidebar %}

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 from datetime import datetime
 
 def calculate_dates(original_date, now):
@@ -45,12 +46,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hc)7l*k5acl6mm-1d(m=#=1e=we4zdno_3%j6veeqqy=*vw4qu'
+# SECRET_KEY = 'django-insecure-hc)7l*k5acl6mm-1d(m=#=1e=we4zdno_3%j6veeqqy=*vw4qu'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG') == 'True')
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['callodineblog.herokuapp.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -66,6 +70,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -76,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'CallodineBlog.urls'
@@ -145,7 +151,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = '/static/'
+# # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# # STATIC_URL = '/static/'
+
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static\\"),
+# )
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -172,12 +188,62 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
-EMAIL_HOST_USER = "algolegion@gmail.com"
-EMAIL_HOST_PASSWORD = "algolegion2020"
+# EMAIL_HOST_USER = "callodineblog@gmail.com"
+# EMAIL_HOST_PASSWORD = "Callodine123"
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+# AWS_ACCESS_KEY_ID = 'AKIAUUYCXP634H6TSVUI'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'callodine-blog-files'
+
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# AWS_ACCESS_KEY_ID = 'AKIAUUYCXP634H6TSVUI'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'callodine-blog-files'
+
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.us-east-2.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+PROJECT_ROOT   =   os.path.dirname(__file__)
+STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra lookup directories for collectstatic to find static files
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())

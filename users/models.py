@@ -16,12 +16,15 @@ class Profile(models.Model):
     def __str__(self):
         return f' {self.user.username} Profile'
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+## We are commenting the below code as it is not necessary for the S3 storage.
+## If we want to do the same in S3, we can use AWS lambda function to resize the images.
 
-        img = Image.open(self.propic.path)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
 
-        if img.height > 370 or img.width > 370:
-            output_size = (370, 370)
-            img.thumbnail(output_size)
-            img.save(self.propic.path)
+    #     img = Image.open(self.propic.path)
+
+    #     if img.height > 370 or img.width > 370:
+    #         output_size = (370, 370)
+    #         img.thumbnail(output_size)
+    #         img.save(self.propic.path)

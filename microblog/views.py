@@ -7,6 +7,11 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from django.contrib.auth.models import User
+import nltk
+import text2emotion as te
+
+nltk.download('omw-1.4')
+
 
 # Create your views here.
 
@@ -74,6 +79,13 @@ class UserPost(LoginRequiredMixin, ListView):
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        emotion  = te.get_emotion(kwargs['object'].content + kwargs['object'].title )
+        emotion = {k: v*100 for k, v in sorted(emotion.items(), key=lambda item: item[1], reverse=True)}
+        context["emotion"] = emotion
+        return context
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title','content']
@@ -116,6 +128,13 @@ def about(request):
         'title':'isribalaji'
     }
     return render(request, 'microblog/about.html', context)
+
+@login_required
+def happydays(request):
+    context = {
+        'title':'Happy Days'
+    }
+    return render(request, 'microblog/happydays.html', context)
 
 def error_404(request, *args, **argv):
         data = {}

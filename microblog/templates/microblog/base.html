@@ -1,8 +1,49 @@
 {% load static %}
 <!DOCTYPE html>
+
+<!-- Built by Sri Balaji Muruganandam -->
+
+<!-- Howdy visitor, you seem to be interested in the code. This application is built on the Django framework.
+If you want to see the entire code. Use the below link. Get in touch - @isribalaji (Twitter, Instagram)
+https://github.com/iSriBalaji/callodineblog -->
+
+
 <html lang="en">
   <head>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+     <!--- basic page needs - SEO
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Callodine Blog</title>
+    <meta name="description" content="Callodine Blog is a microblogging platform where people communicate in short messages called rapt. Rapting is posting short messages for anyone who follows you on the platform, it stores all your thoughts and memories as a text memory box.">
+    <meta name="author" content="Sri Balaji Muruganandam, isribalaji07@gmail.com">
+    <meta name="url" content="https://callodineblog.herokuapp.com/">
+    <meta name="identifier-URL" content="https://callodineblog.herokuapp.com/">
+    <meta name="subject" content="A text memory box">
+    <meta name="Classification" content="Social Media Microblogging Blog">
+    <meta name="category" content="Social Media Microblogging Blog">
+    <meta name="distribution" content="Global">
+    <meta name="target" content="UB Students SUNY Buffalo">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="news_keywords" content="Callodine, Rapt, Sri Balaji Muruganandam, Sri Balaji, Baju, isribalaji, Blog, Microblogging, Rapt Points, Buffalo, UB, SUNY BUffalo, Students">
+    <meta name="keywords" content="Callodine, Rapt, Sri Balaji Muruganandam, Sri Balaji, Baju, isribalaji, Blog, Microblogging, Rapt Points, Buffalo, UB, SUNY BUffalo, Students">
+    <meta http-equiv="content-language" content="en-us">
+<!--     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <meta name='blogcatalog'>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <!-- Social Media SEO -->
+    <meta name="og:title" content="Callodine Blog">
+    <meta name="og:type" content="Social Media Microblogging Blog">
+    <meta name="og:url" content="https://callodineblog.herokuapp.com/">
+    <meta name="og:site_name" content="Callodine Blog">
+    <meta name="og:description" content="Callodine Blog is a microblogging platform where people communicate in short messages called rapt. Rapting is posting short messages for anyone who follows you on the platform, it stores all your thoughts and memories as a text memory box.">
+    <meta name="og:email" content="callodineblog@gmail.com">
+
     <link rel="stylesheet" type="text/css" href="{% static 'microblog/main.css' %}">
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,14 +52,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="https://i.imgur.com/uMSpjGE.png">
+    <link rel="stylesheet" href="">
     {% block title %}
     {% endblock title %}
 
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLSMK42TQY"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-LLSMK42TQY');
+      </script>
+    
   </head>
+
+
   <body>
       <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="http://127.0.0.1:8000/">♾️ Callodine Blog</a>
+        <a class="navbar-brand" href="{% url 'miniblog' %}">♾️ Callodine Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +84,7 @@
               <a class="nav-link" href="{% url 'miniblog' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'profile' %}">Explore</a>
+              <a class="nav-link" href="{% url 'happydays' %}">Buffalo-Days🦬</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +94,7 @@
                 <a class="dropdown-item" href="#">Callodine Days</a>
                 <a class="dropdown-item" href="#">Analytics</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">About</a>
+                <a class="dropdown-item" href="{% url 'about' %}">About</a>
               </div>
             </li>
           </ul>
@@ -49,7 +104,7 @@
           </form>
           <span>&nbsp;&nbsp;&nbsp;</span>
           {% if user.is_authenticated %}
-          <a class="nav-link" href="{% url 'new_post' %}">New➕</a>
+          <a class=" btn btn-white nav-link" href="{% url 'new_post' %}"><strong class="text-primary">New</strong>➕</a>
           <a class="nav-link" href="{% url 'profile' %}">{{ user.first_name }} ⚡</a>
           <a class="nav-item nav-link active" href="{% url 'logout' %}">Logout</a>
           {% else %}
@@ -92,5 +147,25 @@
     $('.bday').tooltip({placement: 'right'});
 });
     </script>
+        <script type="text/javascript">
+          $(document).ready(function() {
+      $('.eday').tooltip({placement: 'bottom'});
+  });
+      </script>
+
+<script>
+  function CopyToClipboard(id)
+  {
+  var r = document.createRange();
+  r.selectNode(document.getElementById(id));
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(r);
+  document.execCommand('copy');
+  window.getSelection().removeAllRanges();
+  }
+  </script>
+  <!-- https://www.arclab.com/en/kb/htmlcss/how-to-copy-text-from-html-element-to-clipboard.html -->
+    {% block facts %}
+    {% endblock facts %}
   </body>
 </html>
